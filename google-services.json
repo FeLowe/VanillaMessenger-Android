@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "766565429454",
+    "firebase_url": "https://vanillamessenger.firebaseio.com",
+    "project_id": "vanillamessenger",
+    "storage_bucket": "vanillamessenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766565429454:android:d43bc9bae6951563",
+        "android_client_info": {
+          "package_name": "com.epicodus.vanillamessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766565429454-4ja8c0sjcq4h67rtrigl75jdcmq6shva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.vanillamessenger",
+            "certificate_hash": "E7260CBE26224DBDA187AF93E8EB09755BB536D2"
+          }
+        },
+        {
+          "client_id": "766565429454-qr30264t2bpu4uj32c0fo80ssmpjj9lt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3btRxLz4Bp5gLYptq5UPpO3aHKHqGHJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766565429454-qr30264t2bpu4uj32c0fo80ssmpjj9lt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

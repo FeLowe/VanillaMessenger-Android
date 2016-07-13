@@ -1,4 +1,4 @@
-package com.epicodus.vanillamesseger;
+package com.epicodus.vanillamessenger;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
