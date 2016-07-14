@@ -4,16 +4,23 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.epicodus.vanillamessenger.Constants;
 import com.epicodus.vanillamessenger.R;
+import com.epicodus.vanillamessenger.adapters.FirebaseUserListViewHolder;
 import com.epicodus.vanillamessenger.adapters.UserListAdapter;
 import com.epicodus.vanillamessenger.models.User;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -24,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mUserReference;
+    private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private UserListAdapter mAdapter;
@@ -51,14 +60,38 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-//        getUsers();
+
+
+        mUserReference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_USERS);
+
+        setUpFirebaseAdapter();
+
+
     }
 
-//    private void getUsers() {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        String uid = user.getUid();
-//        String pushId = uid.getKey();
+    private void setUpFirebaseAdapter() {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<User, FirebaseUserListViewHolder>
+                (User.class, R.layout.user_list, FirebaseUserListViewHolder.class,
+                        mUserReference) {
+
+            @Override
+            protected void populateViewHolder(FirebaseUserListViewHolder viewHolder,User model, int position) {
+                viewHolder.bindUser(model);
+            }
+        };
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.cleanup();
+    }
 //    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
