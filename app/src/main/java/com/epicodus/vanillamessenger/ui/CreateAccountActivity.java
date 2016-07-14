@@ -12,13 +12,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epicodus.vanillamessenger.Constants;
 import com.epicodus.vanillamessenger.R;
+import com.epicodus.vanillamessenger.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +36,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog mAuthProgressDialog;
     private String mName;
+    private User mUser;
+
 
 
     @Bind(R.id.createUserButton)
@@ -96,13 +105,16 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                         if (task.isSuccessful()) {
                             Log.d("TAG", "Authentication successful");
+
                             createFirebaseUserProfile(task.getResult().getUser());
+
                         } else {
                             Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
     }
 
     private void createAuthStateListener() {
@@ -110,8 +122,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    User user = new User(firebaseUser.getDisplayName(), firebaseUser.getEmail());
+                    String uid = firebaseUser.getUid();
+                    DatabaseReference ref = FirebaseDatabase
+                            .getInstance()
+                            .getReference(Constants.FIREBASE_CHILD_USERS)
+                            .child(uid);
+                    ref.setValue(user);
+
+
                     Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
