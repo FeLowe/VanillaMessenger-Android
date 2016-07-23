@@ -3,6 +3,7 @@ VanillaMessenger App - Android - Pair Project
 
 By Fernanda Lowe
 
+
 Description
 
 VanillaMessenger is an unfinished Android Instant Messaging Mobile Application that uses firebase database to record messages between users.
