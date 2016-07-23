@@ -1,4 +1,3 @@
-Unfinished Android Instant Messaging Application that uses firebase database to record messages between users.
 
 VanillaMessenger App - Android - Pair Project
 
