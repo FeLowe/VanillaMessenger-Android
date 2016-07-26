@@ -1,14 +1,14 @@
 
-VanillaMessenger App - Android - Pair Project
+## VanillaMessenger App - Android - Pair Project
 
-By Fernanda Lowe
+#### By Fernanda Lowe and Farnoosh Johnson
 
 
-Description
+### Description
 
 VanillaMessenger is an unfinished Android Instant Messaging Mobile Application that uses firebase database to record messages between users.
 
-Setup/Installation Requirements
+### Setup/Installation Requirements
 
 * On Android Studio
 1. Check out project from version control
@@ -24,25 +24,25 @@ Setup/Installation Requirements
 8. Navigate through the app.
 
 
-Known Bugs
+### Known Bugs
 
 None;
 
 
-Support and contact details
+### Support and contact details
 
-If while using this application you run into any issues or have questions, ideas, concerns, or would like to make a contribution to the code, please contact me at fe_lowe@hotmail.com
+If while using this application you run into any issues or have questions, ideas, concerns, or would like to make a contribution to the code, please contact us at fe_lowe@hotmail.com / farnooshmjohnson@gmail.com
 
 
-Technologies Used
+### Technologies Used
 
 Java and Android Studio.
 
 
-License
+### License
 
 Application can be used under MIT licenses.
 
 
 
-Copyright (c) 2016 Fernanda Lowe at Epicodus.
+Copyright (c) 2016 Fernanda Lowe & Farnoosh Johnson at Epicodus.
